@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cores principais - tons pasteis e azul mate */
+  --color-bg-primary: #f8f9fa;
+  --color-bg-secondary: #e9ecef;
+  --color-bg-tertiary: #dee2e6;
+  
+  --color-matte-blue: #5a7a8a;
+  --color-matte-blue-light: #7a9aaa;
+  --color-matte-blue-dark: #4a6a7a;
+  --color-matte-blue-soft: #e8f0f3;
+  
+  --color-text-primary: #343a40;
+  --color-text-secondary: #6c757d;
+  --color-text-muted: #adb5bd;
+  
+  --color-accent-sage: #9caf88;
+  --color-accent-lavender: #b8a9c9;
+  --color-accent-peach: #e8c4a2;
+  
+  /* Fontes */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+/* Estilos globais */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+/* Seleção de texto */
+::selection {
+  background-color: var(--color-matte-blue);
+  color: white;
+}
+
+/* Scrollbar minimalista */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-matte-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-matte-blue-dark);
+}

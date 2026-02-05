@@ -1,0 +1,67 @@
+export default function Hero() {
+  return (
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center px-6 pt-20"
+    >
+      <div className="max-w-4xl mx-auto text-center">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e8f0f3] rounded-full mb-8">
+          <span className="w-2 h-2 bg-[#9caf88] rounded-full animate-pulse"></span>
+          <span className="text-sm text-[#5a7a8a]">Disponível para projetos</span>
+        </div>
+
+        {/* Main Title */}
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-[#343a40] mb-6 leading-tight">
+          Olá, eu sou{" "}
+          <span className="text-[#5a7a8a]">geborges</span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl text-[#6c757d] mb-8 max-w-2xl mx-auto leading-relaxed">
+          Desenvolvedor, criador e entusiasta de tecnologia. 
+          Construo soluções digitais com foco em simplicidade e funcionalidade.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="#projects"
+            className="px-8 py-3 bg-[#5a7a8a] text-white rounded-full hover:bg-[#4a6a7a] transition-colors text-sm font-medium"
+          >
+            Ver projetos
+          </a>
+          <a
+            href="#contact"
+            className="px-8 py-3 border border-[#5a7a8a] text-[#5a7a8a] rounded-full hover:bg-[#5a7a8a] hover:text-white transition-colors text-sm font-medium"
+          >
+            Entrar em contato
+          </a>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="mt-20 animate-bounce">
+          <a
+            href="#about"
+            className="inline-flex flex-col items-center text-[#adb5bd] hover:text-[#5a7a8a] transition-colors"
+          >
+            <span className="text-xs mb-2">Scroll</span>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
