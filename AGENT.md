@@ -39,6 +39,15 @@ website/
 ├── next.config.ts            # Configuração do Next.js
 ├── package.json              # Dependências
 └── AGENTS.md                 # Este arquivo
+
+infra/
+├── scripts/
+│   ├── deploy-site.sh        # Script de deploy para S3 + CloudFront
+│   └── create-tfstate-bucket.sh  # Script de criação do bucket de estado Terraform
+└── terraform/
+    ├── s3.tf                 # Configuração do S3 bucket
+    ├── cloudfront.tf         # Configuração do CloudFront
+    └── ...                   # Outros arquivos Terraform
 ```
 
 ### Configurações Importantes
@@ -123,6 +132,17 @@ bun run typecheck    # TypeScript - verificação de tipos
 bun run start        # Serve o build (após build)
 ```
 
+### Scripts de Infraestrutura
+```bash
+# deploy do site (da pasta infra/scripts/)
+./deploy-site.sh --profile <aws_profile>           # deploy sem build
+./deploy-site.sh --profile <aws_profile> --install --build  # instala deps + build + deploy
+./deploy-site.sh --profile <aws_profile> --dry-run # simular deploy
+
+# criar bucket de estado Terraform
+./create-tfstate-bucket.sh --profile <aws_profile> --region us-east-1
+```
+
 ---
 
 ## 📋 Regras de Desenvolvimento
@@ -156,10 +176,24 @@ bun run start        # Serve o build (após build)
 - **Links Sociais**: Verificar URLs em `Contact.tsx`
 
 ### Deploy
-O build estático na pasta `dist/` deve ser sincronizado com o S3:
+O build estático na pasta `dist/` é sincronizado com o S3 e invalidado o cache do CloudFront automaticamente:
 ```bash
-aws s3 sync dist/ s3://geborges.com --delete
+# Da pasta infra/scripts/
+./deploy-site.sh --profile <aws_profile>
+
+# Opções:
+#   -p, --profile    Perfil AWS (obrigatório)
+#   -r, --region     Região AWS (default: us-east-1)
+#   -i, --install    Instala dependências com bun install
+#   -b, --build      Build o site antes do deploy
+#   --no-wait        Não esperar a invalidação completar
+#   -d, --dry-run    Simular sem executar
 ```
+
+**Pré-requisitos:**
+1. AWS CLI v2 instalado
+2. Sessão SSO ativa: `aws sso login --profile <profile>`
+3. Bun instalado (para build)
 
 ---
 
@@ -183,6 +217,17 @@ aws s3 sync dist/ s3://geborges.com --delete
 ---
 
 ## 📝 Histórico de Atualizações
+
+### 2026-02-05
+- Adicionado script de deploy `deploy-site.sh`
+- Script automatiza sync com S3 e invalidação do CloudFront
+- Suporte a build automático com Bun
+- Flags: --profile, --build, --dry-run, --no-wait
+- Adicionada flag --install para instalação de dependências
+- Atualizada estrutura de diretórios no AGENTS.md
+- Corrigido sync do deploy para aplicar cache distinto em HTML e assets
+- ACM fixado no provider us-east-1 para compatibilidade com CloudFront
+- Adicionada policy de headers de segurança e attach no CloudFront
 
 ### 2026-02-04
 - Criação inicial do AGENTS.md

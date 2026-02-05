@@ -11,6 +11,52 @@ resource "aws_cloudfront_origin_access_control" "oac" {
 }
 
 ########################
+# CloudFront Response Headers Policy
+########################
+
+resource "aws_cloudfront_response_headers_policy" "security_headers" {
+  name = "geborges-com-security-headers"
+
+  security_headers_config {
+    content_type_options {
+      override = true
+    }
+
+    frame_options {
+      frame_option = "DENY"
+      override     = true
+    }
+
+    referrer_policy {
+      referrer_policy = "strict-origin-when-cross-origin"
+      override        = true
+    }
+
+    strict_transport_security {
+      access_control_max_age_sec = 63072000
+      include_subdomains         = true
+      preload                    = true
+      override                   = true
+    }
+
+    xss_protection {
+      protection = true
+      mode_block = true
+      override   = true
+    }
+
+  }
+
+  custom_headers_config {
+    items {
+      header   = "Permissions-Policy"
+      value    = "geolocation=(), microphone=(), camera=(), fullscreen=(self)"
+      override = true
+    }
+  }
+}
+
+########################
 # CloudFront Distribution
 ########################
 
@@ -33,6 +79,7 @@ resource "aws_cloudfront_distribution" "site" {
     target_origin_id = "s3-geborges-com-site"
 
     viewer_protocol_policy = "redirect-to-https"
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.security_headers.id
 
     forwarded_values {
       query_string = false
