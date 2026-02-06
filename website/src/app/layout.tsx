@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const atkinsonSans = localFont({
+  variable: "--font-display-sans",
+  display: "swap",
+  src: [
+    { path: "./fonts/AtkinsonHyperlegible-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/AtkinsonHyperlegible-Bold.ttf", weight: "700", style: "normal" },
+  ],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const jetBrainsMono = localFont({
+  variable: "--font-display-mono",
+  display: "swap",
+  src: [
+    { path: "./fonts/JetBrainsMono-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/JetBrainsMono-SemiBold.ttf", weight: "600", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -32,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${atkinsonSans.variable} ${jetBrainsMono.variable} antialiased`}
       >
         {children}
       </body>

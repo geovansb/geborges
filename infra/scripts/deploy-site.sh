@@ -36,7 +36,7 @@ usage() {
     echo "Options:"
     echo "  -p, --profile       AWS CLI profile name (required)"
     echo "  -r, --region        AWS region (default: ${DEFAULT_REGION})"
-    echo "  -b, --build         Build the site before deploying (default: false)"
+    echo "  -b, --build         Always build before deploying (default: auto if dist/ missing)"
     echo "  -i, --install       Install dependencies with bun install (default: false)"
     echo "  -w, --wait          Wait for CloudFront invalidation to complete (default: true)"
     echo "  -d, --dry-run       Show what would be done without executing (default: false)"
@@ -97,11 +97,16 @@ check_prerequisites() {
     fi
 
     if [ ! -d "${BUILD_DIR}" ]; then
-        echo "ERROR: Build directory '${BUILD_DIR}' not found"
-        echo "Please run with --build flag or build the site manually"
-        exit 1
+        if [ "${BUILD_SITE}" = true ]; then
+            echo "[INFO] Build directory '${BUILD_DIR}' not found; will build before deploy"
+        else
+            echo "ERROR: Build directory '${BUILD_DIR}' not found"
+            echo "Please run with --build flag or build the site manually"
+            exit 1
+        fi
+    else
+        echo "[OK] Build directory exists: ${BUILD_DIR}"
     fi
-    echo "[OK] Build directory exists: ${BUILD_DIR}"
 }
 
 # =============================================================================
@@ -314,7 +319,11 @@ display_summary() {
     echo ""
 
     if [ "${BUILD_SITE}" = true ]; then
-        echo "Build: Executed"
+        if [ "${AUTO_BUILD}" = true ]; then
+            echo "Build: Executed (auto)"
+        else
+            echo "Build: Executed"
+        fi
     else
         echo "Build: Skipped (used existing build)"
     fi
@@ -345,6 +354,7 @@ main() {
     AWS_PROFILE=""
     AWS_REGION="${DEFAULT_REGION}"
     BUILD_SITE=false
+    AUTO_BUILD=false
     INSTALL_DEPS=false
     WAIT_FOR_INVALIDATION=true
     DRY_RUN=false
@@ -394,6 +404,11 @@ main() {
         echo ""
         usage
         exit 1
+    fi
+
+    if [ "${BUILD_SITE}" = false ] && [ ! -d "${BUILD_DIR}" ]; then
+        BUILD_SITE=true
+        AUTO_BUILD=true
     fi
 
     export AWS_PROFILE

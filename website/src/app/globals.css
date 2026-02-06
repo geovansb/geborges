@@ -20,8 +20,8 @@
   --color-accent-peach: #e8c4a2;
   
   /* Fontes */
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: var(--font-display-sans), "Segoe UI", "Noto Sans", "Liberation Sans", "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-display-mono), "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
 }
 
 /* Estilos globais */

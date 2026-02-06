@@ -15,10 +15,10 @@ Este é o **portfolio pessoal de Geovane Borges (geborges.com)** - um site minim
 ## 🏗️ Arquitetura e Tecnologias
 
 ### Stack Principal
-- **Framework**: Next.js 16.1.3 (App Router)
-- **React**: 19.2.3
+- **Framework**: Next.js 16.1.6 (App Router)
+- **React**: 19.2.4
 - **Linguagem**: TypeScript 5.9.3
-- **Estilização**: Tailwind CSS 4.1.17
+- **Estilização**: Tailwind CSS 4.1.18
 - **Build**: Export estático (`output: 'export'`)
 
 ### Estrutura de Diretórios
@@ -67,7 +67,7 @@ infra/
 - **Texto Secundário**: `#6c757d` (cinza médio)
 
 ### Tipografia
-- Fonte: Inter (Google Fonts - configurada no layout)
+- Fonte: Atkinson Hyperlegible (texto) e JetBrains Mono (mono), hospedadas localmente
 - Estilo: Clean, minimalista, discreta
 
 ### Componentes Visuais
@@ -135,8 +135,8 @@ bun run start        # Serve o build (após build)
 ### Scripts de Infraestrutura
 ```bash
 # deploy do site (da pasta infra/scripts/)
-./deploy-site.sh --profile <aws_profile>           # deploy sem build
-./deploy-site.sh --profile <aws_profile> --install --build  # instala deps + build + deploy
+./deploy-site.sh --profile <aws_profile>           # deploy (build automático se dist/ faltar)
+./deploy-site.sh --profile <aws_profile> --install --build  # instala deps + força build + deploy
 ./deploy-site.sh --profile <aws_profile> --dry-run # simular deploy
 
 # criar bucket de estado Terraform
@@ -185,7 +185,7 @@ O build estático na pasta `dist/` é sincronizado com o S3 e invalidado o cache
 #   -p, --profile    Perfil AWS (obrigatório)
 #   -r, --region     Região AWS (default: us-east-1)
 #   -i, --install    Instala dependências com bun install
-#   -b, --build      Build o site antes do deploy
+#   -b, --build      Força build do site antes do deploy (default: auto se dist/ faltar)
 #   --no-wait        Não esperar a invalidação completar
 #   -d, --dry-run    Simular sem executar
 ```
@@ -217,6 +217,14 @@ O build estático na pasta `dist/` é sincronizado com o S3 e invalidado o cache
 ---
 
 ## 📝 Histórico de Atualizações
+
+### 2026-02-06
+- Atualizadas dependências do site (Next.js, React, Tailwind CSS, ESLint e types)
+- Atualizado lockfile do Bun
+- Trocadas fontes para Atkinson Hyperlegible e JetBrains Mono (local)
+- Fixado Node 24.13.0 em .nvmrc e .tool-versions
+- Definido turbopack.root no Next.js para evitar warning de raiz do workspace
+- Ignorado website/dist/ no git e ajustado deploy para build automático quando necessário
 
 ### 2026-02-05
 - Adicionado script de deploy `deploy-site.sh`
