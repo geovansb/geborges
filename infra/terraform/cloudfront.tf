@@ -22,6 +22,14 @@ resource "aws_cloudfront_response_headers_policy" "security_headers" {
       override = true
     }
 
+    dynamic "content_security_policy" {
+      for_each = var.CSP_Enable ? [1] : []
+      content {
+        content_security_policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'"
+        override                = true
+      }
+    }
+
     frame_options {
       frame_option = "DENY"
       override     = true

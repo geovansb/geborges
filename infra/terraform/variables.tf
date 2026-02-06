@@ -31,3 +31,9 @@ variable "default_tags" {
         Env = "prod"
     }
 }
+
+variable "CSP_Enable" {
+  description = "Enable Content-Security-Policy header in CloudFront response headers policy"
+  type        = bool
+  default     = true
+}
