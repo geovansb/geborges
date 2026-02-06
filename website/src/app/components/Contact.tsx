@@ -39,16 +39,16 @@ const socialLinks = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 bg-[#e9ecef]">
+    <section id="contact" className="py-24 px-6 bg-[color:var(--color-bg-secondary)]">
       <div className="max-w-4xl mx-auto text-center">
         {/* Section Header */}
-        <span className="text-sm text-[#5a7a8a] font-medium uppercase tracking-wider">
+        <span className="text-sm text-[color:var(--color-matte-blue)] font-medium uppercase tracking-wider">
           Contato
         </span>
-        <h2 className="text-3xl md:text-4xl font-medium text-[#343a40] mt-2 mb-6">
+        <h2 className="text-3xl md:text-4xl font-medium text-[color:var(--color-text-primary)] mt-2 mb-6">
           Vamos conversar
         </h2>
-        <p className="text-[#6c757d] mb-12 max-w-xl mx-auto">
+        <p className="text-[color:var(--color-text-secondary)] mb-12 max-w-xl mx-auto">
           Estou sempre aberto a novas oportunidades, colaborações ou apenas 
           uma boa conversa sobre tecnologia. Sinta-se à vontade para entrar em contato!
         </p>
@@ -57,7 +57,7 @@ export default function Contact() {
         <div className="mb-12">
           <a
             href="mailto:contato@geborges.com"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#5a7a8a] text-white rounded-full hover:bg-[#4a6a7a] transition-colors text-lg font-medium"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[color:var(--color-matte-blue)] text-white rounded-full hover:bg-[color:var(--color-matte-blue-dark)] transition-colors text-lg font-medium"
           >
             <svg
               className="w-5 h-5"
@@ -84,7 +84,7 @@ export default function Contact() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-[#f8f9fa] rounded-full text-[#6c757d] hover:text-[#5a7a8a] hover:bg-[#dee2e6] transition-colors"
+              className="p-3 bg-[color:var(--color-bg-primary)] rounded-full text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] hover:bg-[color:var(--color-bg-tertiary)] transition-colors"
               aria-label={link.name}
             >
               {link.icon}
@@ -93,9 +93,9 @@ export default function Contact() {
         </div>
 
         {/* Availability */}
-        <div className="mt-12 inline-flex items-center gap-2 px-4 py-2 bg-[#f8f9fa] rounded-full">
-          <span className="w-2 h-2 bg-[#9caf88] rounded-full animate-pulse"></span>
-          <span className="text-sm text-[#6c757d]">
+        <div className="mt-12 inline-flex items-center gap-2 px-4 py-2 bg-[color:var(--color-bg-primary)] rounded-full">
+          <span className="w-2 h-2 bg-[color:var(--color-accent-sage)] rounded-full animate-pulse"></span>
+          <span className="text-sm text-[color:var(--color-text-secondary)]">
             Disponível para projetos freelance
           </span>
         </div>

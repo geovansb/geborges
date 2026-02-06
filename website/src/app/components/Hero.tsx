@@ -6,19 +6,19 @@ export default function Hero() {
     >
       <div className="max-w-4xl mx-auto text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e8f0f3] rounded-full mb-8">
-          <span className="w-2 h-2 bg-[#9caf88] rounded-full animate-pulse"></span>
-          <span className="text-sm text-[#5a7a8a]">Disponível para projetos</span>
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[color:var(--color-matte-blue-soft)] rounded-full mb-8">
+          <span className="w-2 h-2 bg-[color:var(--color-accent-sage)] rounded-full animate-pulse"></span>
+          <span className="text-sm text-[color:var(--color-matte-blue)]">Disponível para projetos</span>
         </div>
 
         {/* Main Title */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-[#343a40] mb-6 leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-[color:var(--color-text-primary)] mb-6 leading-tight">
           Olá, eu sou{" "}
-          <span className="text-[#5a7a8a]">geborges</span>
+          <span className="text-[color:var(--color-matte-blue)]">geborges</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg md:text-xl text-[#6c757d] mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-[color:var(--color-text-secondary)] mb-8 max-w-2xl mx-auto leading-relaxed">
           Desenvolvedor, criador e entusiasta de tecnologia. 
           Construo soluções digitais com foco em simplicidade e funcionalidade.
         </p>
@@ -27,13 +27,13 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#projects"
-            className="px-8 py-3 bg-[#5a7a8a] text-white rounded-full hover:bg-[#4a6a7a] transition-colors text-sm font-medium"
+            className="px-8 py-3 bg-[color:var(--color-matte-blue)] text-white rounded-full hover:bg-[color:var(--color-matte-blue-dark)] transition-colors text-sm font-medium"
           >
             Ver projetos
           </a>
           <a
             href="#contact"
-            className="px-8 py-3 border border-[#5a7a8a] text-[#5a7a8a] rounded-full hover:bg-[#5a7a8a] hover:text-white transition-colors text-sm font-medium"
+            className="px-8 py-3 border border-[color:var(--color-matte-blue)] text-[color:var(--color-matte-blue)] rounded-full hover:bg-[color:var(--color-matte-blue)] hover:text-white transition-colors text-sm font-medium"
           >
             Entrar em contato
           </a>
@@ -43,7 +43,7 @@ export default function Hero() {
         <div className="mt-20 animate-bounce">
           <a
             href="#about"
-            className="inline-flex flex-col items-center text-[#adb5bd] hover:text-[#5a7a8a] transition-colors"
+            className="inline-flex flex-col items-center text-[color:var(--color-text-muted)] hover:text-[color:var(--color-matte-blue)] transition-colors"
           >
             <span className="text-xs mb-2">Scroll</span>
             <svg

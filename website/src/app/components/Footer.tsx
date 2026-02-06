@@ -2,11 +2,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-8 px-6 bg-[#f8f9fa] border-t border-[#dee2e6]">
+    <footer className="py-8 px-6 bg-[color:var(--color-bg-primary)] border-t border-[color:var(--color-bg-tertiary)]">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
-          <p className="text-sm text-[#adb5bd]">
+          <p className="text-sm text-[color:var(--color-text-muted)]">
             © {currentYear} geborges.com. Todos os direitos reservados.
           </p>
 
@@ -16,13 +16,13 @@ export default function Footer() {
               href="https://blog.geborges.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[#6c757d] hover:text-[#5a7a8a] transition-colors"
+              className="text-sm text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] transition-colors"
             >
               Blog
             </a>
             <a
               href="#"
-              className="text-sm text-[#6c757d] hover:text-[#5a7a8a] transition-colors"
+              className="text-sm text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] transition-colors"
             >
               RSS
             </a>
@@ -30,7 +30,7 @@ export default function Footer() {
               href="https://github.com/geborges"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[#6c757d] hover:text-[#5a7a8a] transition-colors"
+              className="text-sm text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] transition-colors"
             >
               GitHub
             </a>
@@ -38,9 +38,9 @@ export default function Footer() {
         </div>
 
         {/* Made with */}
-        <p className="text-center text-xs text-[#adb5bd] mt-6">
+        <p className="text-center text-xs text-[color:var(--color-text-muted)] mt-6">
           Feito com{" "}
-          <span className="text-[#5a7a8a]">♥</span>
+          <span className="text-[color:var(--color-matte-blue)]">♥</span>
           {" "}usando Next.js + Tailwind CSS
         </p>
       </div>

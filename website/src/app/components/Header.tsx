@@ -12,6 +12,7 @@ const navItems = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,19 @@ export default function Header() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const storedTheme = root.getAttribute("data-theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      setTheme(storedTheme);
+      return;
+    }
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = prefersDark ? "dark" : "light";
+    root.setAttribute("data-theme", initialTheme);
+    setTheme(initialTheme);
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -30,11 +44,60 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      window.localStorage.setItem("theme", next);
+      return next;
+    });
+  };
+
+  const ThemeToggleButton = ({ className = "" }: { className?: string }) => (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label={theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"}
+      aria-pressed={theme === "dark"}
+      className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-[color:var(--color-bg-secondary)] text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] hover:bg-[color:var(--color-bg-tertiary)] transition-colors ${className}`}
+    >
+      {theme === "dark" ? (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414m0-11.314L7.05 7.05m9.9 9.9 1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z"
+          />
+        </svg>
+      ) : (
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"
+          />
+        </svg>
+      )}
+    </button>
+  );
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#f8f9fa]/90 backdrop-blur-md shadow-sm"
+          ? "bg-[color:var(--color-bg-primary)] backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -44,7 +107,7 @@ export default function Header() {
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, "#hero")}
-            className="text-xl font-medium text-[#5a7a8a] hover:text-[#4a6a7a] transition-colors"
+            className="text-xl font-medium text-[color:var(--color-matte-blue)] hover:text-[color:var(--color-matte-blue-dark)] transition-colors"
           >
             geborges.com
           </a>
@@ -56,7 +119,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="text-sm text-[#6c757d] hover:text-[#5a7a8a] transition-colors"
+                className="text-sm text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] transition-colors"
               >
                 {item.label}
               </a>
@@ -65,53 +128,57 @@ export default function Header() {
               href="https://blog.geborges.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm px-4 py-2 bg-[#5a7a8a] text-white rounded-full hover:bg-[#4a6a7a] transition-colors"
+              className="text-sm px-4 py-2 bg-[color:var(--color-matte-blue)] text-white rounded-full hover:bg-[color:var(--color-matte-blue-dark)] transition-colors"
             >
               Blog
             </a>
+            <ThemeToggleButton />
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-[#5a7a8a]"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          {/* Mobile Controls */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggleButton />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-[color:var(--color-matte-blue)]"
+              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 border-t border-[#dee2e6]">
+          <nav className="md:hidden mt-4 pb-4 border-t border-[color:var(--color-bg-tertiary)]">
             <div className="flex flex-col gap-4 pt-4">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-[#6c757d] hover:text-[#5a7a8a] transition-colors"
+                  className="text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] transition-colors"
                 >
                   {item.label}
                 </a>
@@ -120,7 +187,7 @@ export default function Header() {
                 href="https://blog.geborges.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-center px-4 py-2 bg-[#5a7a8a] text-white rounded-full hover:bg-[#4a6a7a] transition-colors"
+                className="inline-block text-center px-4 py-2 bg-[color:var(--color-matte-blue)] text-white rounded-full hover:bg-[color:var(--color-matte-blue-dark)] transition-colors"
               >
                 Blog
               </a>

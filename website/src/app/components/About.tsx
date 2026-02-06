@@ -15,14 +15,14 @@ const interests = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 bg-[#e9ecef]">
+    <section id="about" className="py-24 px-6 bg-[color:var(--color-bg-secondary)]">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
-          <span className="text-sm text-[#5a7a8a] font-medium uppercase tracking-wider">
+          <span className="text-sm text-[color:var(--color-matte-blue)] font-medium uppercase tracking-wider">
             Sobre mim
           </span>
-          <h2 className="text-3xl md:text-4xl font-medium text-[#343a40] mt-2">
+          <h2 className="text-3xl md:text-4xl font-medium text-[color:var(--color-text-primary)] mt-2">
             Quem sou eu
           </h2>
         </div>
@@ -30,18 +30,18 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
           {/* Bio */}
           <div>
-            <p className="text-[#6c757d] leading-relaxed mb-6">
+            <p className="text-[color:var(--color-text-secondary)] leading-relaxed mb-6">
               Sou um desenvolvedor apaixonado por criar experiências digitais 
               que fazem a diferença. Acredito na simplicidade como princípio 
               fundamental do bom design e da boa engenharia.
             </p>
-            <p className="text-[#6c757d] leading-relaxed mb-6">
+            <p className="text-[color:var(--color-text-secondary)] leading-relaxed mb-6">
               Com experiência em desenvolvimento full-stack, trabalho com 
               tecnologias modernas para construir aplicações escaláveis e 
               performáticas. Gosto de resolver problemas complexos de forma 
               elegante.
             </p>
-            <p className="text-[#6c757d] leading-relaxed">
+            <p className="text-[color:var(--color-text-secondary)] leading-relaxed">
               Quando não estou codando, provavelmente estou explorando novas 
               tecnologias, lendo um bom livro ou planejando a próxima viagem.
             </p>
@@ -50,7 +50,7 @@ export default function About() {
             <div className="mt-8">
               <a
                 href="#"
-                className="inline-flex items-center gap-2 text-[#5a7a8a] hover:text-[#4a6a7a] transition-colors font-medium"
+                className="inline-flex items-center gap-2 text-[color:var(--color-matte-blue)] hover:text-[color:var(--color-matte-blue-dark)] transition-colors font-medium"
               >
                 <svg
                   className="w-5 h-5"
@@ -74,20 +74,20 @@ export default function About() {
           <div className="space-y-10">
             {/* Skills */}
             <div>
-              <h3 className="text-lg font-medium text-[#343a40] mb-4">
+              <h3 className="text-lg font-medium text-[color:var(--color-text-primary)] mb-4">
                 Habilidades
               </h3>
               <div className="space-y-4">
                 {skills.map((skillGroup) => (
                   <div key={skillGroup.category}>
-                    <span className="text-sm text-[#adb5bd] mb-2 block">
+                    <span className="text-sm text-[color:var(--color-text-muted)] mb-2 block">
                       {skillGroup.category}
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {skillGroup.items.map((skill) => (
                         <span
                           key={skill}
-                          className="px-3 py-1 bg-[#f8f9fa] text-[#5a7a8a] text-sm rounded-full"
+                          className="px-3 py-1 bg-[color:var(--color-bg-primary)] text-[color:var(--color-matte-blue)] text-sm rounded-full"
                         >
                           {skill}
                         </span>
@@ -100,14 +100,14 @@ export default function About() {
 
             {/* Interests */}
             <div>
-              <h3 className="text-lg font-medium text-[#343a40] mb-4">
+              <h3 className="text-lg font-medium text-[color:var(--color-text-primary)] mb-4">
                 Interesses
               </h3>
               <div className="flex flex-wrap gap-3">
                 {interests.map((interest) => (
                   <span
                     key={interest.label}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#f8f9fa] rounded-full text-[#6c757d] text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[color:var(--color-bg-primary)] rounded-full text-[color:var(--color-text-secondary)] text-sm"
                   >
                     <span>{interest.icon}</span>
                     {interest.label}

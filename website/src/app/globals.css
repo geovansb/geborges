@@ -24,15 +24,40 @@
   --font-mono: var(--font-display-mono), "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
 }
 
+html[data-theme="dark"] {
+  --color-bg-primary: #0f1418;
+  --color-bg-secondary: #161d22;
+  --color-bg-tertiary: #1f2930;
+
+  --color-matte-blue: #7aa5b7;
+  --color-matte-blue-light: #94b9c7;
+  --color-matte-blue-dark: #5d8d9f;
+  --color-matte-blue-soft: #182127;
+
+  --color-text-primary: #e2e8ec;
+  --color-text-secondary: #b8c2c9;
+  --color-text-muted: #8b97a1;
+
+  --color-accent-sage: #9caf88;
+  --color-accent-lavender: #b8a9c9;
+  --color-accent-peach: #e8c4a2;
+}
+
 /* Estilos globais */
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 /* Seleção de texto */

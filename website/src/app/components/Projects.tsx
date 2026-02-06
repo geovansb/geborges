@@ -35,17 +35,17 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 bg-[#f8f9fa]">
+    <section id="projects" className="py-24 px-6 bg-[color:var(--color-bg-primary)]">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
-          <span className="text-sm text-[#5a7a8a] font-medium uppercase tracking-wider">
+          <span className="text-sm text-[color:var(--color-matte-blue)] font-medium uppercase tracking-wider">
             Projetos
           </span>
-          <h2 className="text-3xl md:text-4xl font-medium text-[#343a40] mt-2">
+          <h2 className="text-3xl md:text-4xl font-medium text-[color:var(--color-text-primary)] mt-2">
             Trabalhos recentes
           </h2>
-          <p className="text-[#6c757d] mt-4 max-w-2xl">
+          <p className="text-[color:var(--color-text-secondary)] mt-4 max-w-2xl">
             Uma seleção de projetos que desenvolvi. Cada um representa um 
             desafio único e uma oportunidade de aprendizado.
           </p>
@@ -56,16 +56,16 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group p-6 bg-[#e9ecef] rounded-2xl hover:bg-[#dee2e6] transition-colors"
+              className="group p-6 bg-[color:var(--color-bg-secondary)] rounded-2xl hover:bg-[color:var(--color-bg-tertiary)] transition-colors"
             >
               <div className="flex items-start justify-between mb-4">
-                <h3 className="text-xl font-medium text-[#343a40] group-hover:text-[#5a7a8a] transition-colors">
+                <h3 className="text-xl font-medium text-[color:var(--color-text-primary)] group-hover:text-[color:var(--color-matte-blue)] transition-colors">
                   {project.title}
                 </h3>
                 <div className="flex gap-2">
                   <a
                     href={project.github}
-                    className="p-2 text-[#adb5bd] hover:text-[#5a7a8a] transition-colors"
+                    className="p-2 text-[color:var(--color-text-muted)] hover:text-[color:var(--color-matte-blue)] transition-colors"
                     aria-label="Ver código no GitHub"
                   >
                     <svg
@@ -78,7 +78,7 @@ export default function Projects() {
                   </a>
                   <a
                     href={project.link}
-                    className="p-2 text-[#adb5bd] hover:text-[#5a7a8a] transition-colors"
+                    className="p-2 text-[color:var(--color-text-muted)] hover:text-[color:var(--color-matte-blue)] transition-colors"
                     aria-label="Ver projeto"
                   >
                     <svg
@@ -98,7 +98,7 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="text-[#6c757d] mb-4 leading-relaxed">
+              <p className="text-[color:var(--color-text-secondary)] mb-4 leading-relaxed">
                 {project.description}
               </p>
 
@@ -106,7 +106,7 @@ export default function Projects() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-[#f8f9fa] text-[#5a7a8a] text-xs rounded-full"
+                    className="px-3 py-1 bg-[color:var(--color-bg-primary)] text-[color:var(--color-matte-blue)] text-xs rounded-full"
                   >
                     {tag}
                   </span>
@@ -122,7 +122,7 @@ export default function Projects() {
             href="https://github.com/geborges"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[#5a7a8a] hover:text-[#4a6a7a] transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-[color:var(--color-matte-blue)] hover:text-[color:var(--color-matte-blue-dark)] transition-colors font-medium"
           >
             Ver mais no GitHub
             <svg

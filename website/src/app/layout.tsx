@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 
 const atkinsonSans = localFont({
@@ -38,10 +39,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" data-theme="light" suppressHydrationWarning>
       <body
         className={`${atkinsonSans.variable} ${jetBrainsMono.variable} antialiased`}
       >
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var t=localStorage.getItem("theme");var e=t==="light"||t==="dark"?t:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",e);}catch(r){}})();`}
+        </Script>
         {children}
       </body>
     </html>
