@@ -38,7 +38,7 @@ usage() {
     echo "  -r, --region        AWS region (default: ${DEFAULT_REGION})"
     echo "  -b, --build         Always build before deploying (default: auto if dist/ missing)"
     echo "  -i, --install       Install dependencies with bun install (default: false)"
-    echo "  -w, --wait          Wait for CloudFront invalidation to complete (default: true)"
+    echo "      --no-wait       Do not wait for CloudFront invalidation (default: wait)"
     echo "  -d, --dry-run       Show what would be done without executing (default: false)"
     echo "  -h, --help          Display this help message and exit"
     echo ""
@@ -185,6 +185,7 @@ sync_to_s3() {
         echo "  aws s3 sync ${BUILD_DIR} s3://${S3_BUCKET}/ \\"
         echo "    --profile ${AWS_PROFILE} \\"
         echo "    --region ${AWS_REGION} \\"
+        echo "    --delete \\"
         echo "    --cache-control 'public, max-age=31536000, immutable' \\"
         echo "    --exclude '.DS_Store' \\"
         echo "    --exclude '*.map' \\"
@@ -207,6 +208,7 @@ sync_to_s3() {
     aws s3 sync "${BUILD_DIR}" "s3://${S3_BUCKET}/" \
         --profile "${AWS_PROFILE}" \
         --region "${AWS_REGION}" \
+        --delete \
         --cache-control "public, max-age=31536000, immutable" \
         --exclude ".DS_Store" \
         --exclude "*.map" \
@@ -224,6 +226,11 @@ get_cloudfront_distribution_id() {
     echo "============================================"
     echo "Getting CloudFront Distribution ID..."
     echo "============================================"
+
+    if [ "${DRY_RUN}" = true ]; then
+        echo "[DRY RUN] Would fetch CloudFront distribution ID"
+        return
+    fi
 
     DISTRIBUTION_ID=$(aws cloudfront list-distributions \
         --profile "${AWS_PROFILE}" \
@@ -254,17 +261,16 @@ invalidate_cloudfront() {
         return
     fi
 
-    INVALIDATION_OUTPUT=$(aws cloudfront create-invalidation \
+    INVALIDATION_ID=$(aws cloudfront create-invalidation \
         --distribution-id "${DISTRIBUTION_ID}" \
         --profile "${AWS_PROFILE}" \
         --region "${AWS_REGION}" \
-        --paths "${INVALIDATION_PATHS}")
-
-    INVALIDATION_ID=$(echo "${INVALIDATION_OUTPUT}" | python3 -c "import sys, json; print(json.load(sys.stdin)['Invalidation']['Id'])")
+        --paths "${INVALIDATION_PATHS}" \
+        --query "Invalidation.Id" \
+        --output text)
 
     if [ -z "${INVALIDATION_ID}" ]; then
         echo "ERROR: Failed to create CloudFront invalidation"
-        echo "Output: ${INVALIDATION_OUTPUT}"
         exit 1
     fi
 
