@@ -6,24 +6,52 @@ export default function Hero() {
     >
       <div className="max-w-4xl mx-auto text-center">
         {/* Main Title */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-[color:var(--color-text-primary)] mb-6 leading-tight">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium text-[color:var(--color-text-primary)] mb-6 leading-tight">
           Olá, eu sou{" "}
-          <span className="text-[color:var(--color-matte-blue)]">geborges</span>
+          <span className="text-[color:var(--color-matte-blue)]">
+            Geovan Borges
+          </span>
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-[color:var(--color-text-secondary)] mb-8 max-w-2xl mx-auto leading-relaxed">
-          Desenvolvedor, criador e entusiasta de tecnologia. 
-          Construo soluções digitais com foco em simplicidade e funcionalidade.
+          <strong className="font-semibold">
+            Engenheiro de Plataforma de Dados
+          </strong>{" "}
+          na{" "}
+          <a
+            href="https://www.pismo.io/pt/"
+            target="_blank"
+            rel="noreferrer"
+            title="https://www.pismo.io/pt/"
+            className="text-[color:var(--color-matte-blue)] font-semibold underline decoration-[color:var(--color-matte-blue)]/60 underline-offset-4 hover:text-[color:var(--color-matte-blue-dark)] hover:decoration-[color:var(--color-matte-blue-dark)] transition-colors"
+          >
+            Pismo
+          </a>{" "}
+          |{" "}
+          <a
+            href="https://www.visa.com.br/"
+            target="_blank"
+            rel="noreferrer"
+            title="https://www.visa.com.br/"
+            className="text-[color:var(--color-matte-blue)] font-semibold underline decoration-[color:var(--color-matte-blue)]/60 underline-offset-4 hover:text-[color:var(--color-matte-blue-dark)] hover:decoration-[color:var(--color-matte-blue-dark)] transition-colors"
+          >
+            Visa
+          </a>
+          , atuando com soluções bancárias na nuvem{" "}
+          <strong className="font-semibold">AWS</strong>. Trabalho para melhorar
+          escalabilidade, resiliência, performance e operação sustentável. Atuo
+          em TI desde 2007, com base sólida como{" "}
+          <strong className="font-semibold">DBA</strong>.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="#projects"
+            href="#about"
             className="px-8 py-3 bg-[color:var(--color-matte-blue)] text-white rounded-full hover:bg-[color:var(--color-matte-blue-dark)] transition-colors text-sm font-medium"
           >
-            Ver projetos
+            Conheça mais sobre mim
           </a>
           <a
             href="#contact"
