@@ -12,3 +12,11 @@ command = '''
 cd /Users/geovansb/github/geborges/website
 npm run build && npm run preview:dist
 '''
+
+[[actions]]
+name = "Deploy S3"
+icon = "tool"
+command = '''
+cd /Users/geovansb/github/geborges/infra/scripts
+./deploy-site.sh -b -i -p geborges-fulladmin
+'''

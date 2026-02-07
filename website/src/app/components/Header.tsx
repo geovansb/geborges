@@ -131,15 +131,14 @@ export default function Header() {
           </div>
 
           {/* Mobile Controls */}
-          <div className="md:hidden flex items-center gap-2 ml-auto">
-            <ThemeToggleButton />
+          <div className="md:hidden flex items-center justify-between w-full">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-[color:var(--color-matte-blue)]"
-              aria-label="Toggle menu"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-[color:var(--color-matte-blue)] hover:bg-[color:var(--color-bg-tertiary)] transition-colors text-xs font-medium"
+              aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"}
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -160,7 +159,9 @@ export default function Header() {
                   />
                 )}
               </svg>
+              <span>Menu</span>
             </button>
+            <ThemeToggleButton />
           </div>
         </div>
 
