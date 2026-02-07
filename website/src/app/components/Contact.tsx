@@ -92,13 +92,6 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Availability */}
-        <div className="mt-12 inline-flex items-center gap-2 px-4 py-2 bg-[color:var(--color-bg-primary)] rounded-full">
-          <span className="w-2 h-2 bg-[color:var(--color-accent-sage)] rounded-full animate-pulse"></span>
-          <span className="text-sm text-[color:var(--color-text-secondary)]">
-            Disponível para projetos freelance
-          </span>
-        </div>
       </div>
     </section>
   );

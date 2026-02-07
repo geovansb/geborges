@@ -5,12 +5,6 @@ export default function Hero() {
       className="min-h-screen flex items-center justify-center px-6 pt-20"
     >
       <div className="max-w-4xl mx-auto text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[color:var(--color-matte-blue-soft)] rounded-full mb-8">
-          <span className="w-2 h-2 bg-[color:var(--color-accent-sage)] rounded-full animate-pulse"></span>
-          <span className="text-sm text-[color:var(--color-matte-blue)]">Disponível para projetos</span>
-        </div>
-
         {/* Main Title */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium text-[color:var(--color-text-primary)] mb-6 leading-tight">
           Olá, eu sou{" "}

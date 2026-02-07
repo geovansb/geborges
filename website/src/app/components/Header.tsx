@@ -59,7 +59,7 @@ export default function Header() {
       onClick={toggleTheme}
       aria-label={theme === "dark" ? "Mudar para tema claro" : "Mudar para tema escuro"}
       aria-pressed={theme === "dark"}
-      className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-[color:var(--color-bg-secondary)] text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] hover:bg-[color:var(--color-bg-tertiary)] transition-colors ${className}`}
+      className={`inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[color:var(--color-bg-secondary)] text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] hover:bg-[color:var(--color-bg-tertiary)] transition-colors text-xs font-medium ${className}`}
     >
       {theme === "dark" ? (
         <svg
@@ -90,6 +90,7 @@ export default function Header() {
           />
         </svg>
       )}
+      <span>{theme === "dark" ? "Claro" : "Escuro"}</span>
     </button>
   );
 
@@ -102,16 +103,7 @@ export default function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a
-            href="#hero"
-            onClick={(e) => handleNavClick(e, "#hero")}
-            className="text-xl font-medium text-[color:var(--color-matte-blue)] hover:text-[color:var(--color-matte-blue-dark)] transition-colors"
-          >
-            geborges.com
-          </a>
-
+        <div className="flex items-center">
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
@@ -136,7 +128,7 @@ export default function Header() {
           </nav>
 
           {/* Mobile Controls */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2 ml-auto">
             <ThemeToggleButton />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
