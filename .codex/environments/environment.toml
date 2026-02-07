@@ -10,5 +10,5 @@ name = "Preview Website"
 icon = "run"
 command = '''
 cd /Users/geovansb/github/geborges/website
-npm run preview:dist
+npm run build && npm run preview:dist
 '''

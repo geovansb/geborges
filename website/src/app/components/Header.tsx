@@ -124,8 +124,11 @@ export default function Header() {
             >
               Blog
             </a>
-            <ThemeToggleButton />
           </nav>
+
+          <div className="hidden md:flex items-center ml-auto">
+            <ThemeToggleButton />
+          </div>
 
           {/* Mobile Controls */}
           <div className="md:hidden flex items-center gap-2 ml-auto">
