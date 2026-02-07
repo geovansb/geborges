@@ -1,33 +1,33 @@
 const projects = [
   {
-    title: "SaaS Dashboard",
+    title: "Projeto 1",
     description:
-      "Dashboard administrativo completo com autenticação, relatórios em tempo real e gerenciamento de usuários.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "Tailwind"],
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    tags: ["tag1", "tag2", "tagN"],
     link: "#",
     github: "#",
   },
   {
-    title: "E-commerce API",
+    title: "Projeto 2",
     description:
-      "API RESTful para e-commerce com integração de pagamentos, gestão de estoque e notificações.",
-    tags: ["Node.js", "Express", "MongoDB", "Stripe"],
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam.",
+    tags: ["tag1", "tag2", "tagN"],
     link: "#",
     github: "#",
   },
   {
-    title: "Portfolio Generator",
+    title: "Projeto 3",
     description:
-      "Ferramenta CLI para gerar portfolios estáticos a partir de arquivos Markdown.",
-    tags: ["Python", "Jinja2", "Markdown"],
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit.",
+    tags: ["tag1", "tag2", "tagN"],
     link: "#",
     github: "#",
   },
   {
-    title: "Task Manager",
+    title: "Projeto N",
     description:
-      "Aplicativo de gerenciamento de tarefas com colaboração em tempo real e integração com calendário.",
-    tags: ["React", "Firebase", "PWA"],
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident.",
+    tags: ["tag1", "tag2", "tagN"],
     link: "#",
     github: "#",
   },
@@ -116,30 +116,7 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* View All Link */}
-        <div className="mt-12 text-center">
-          <a
-            href="https://github.com/geborges"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[color:var(--color-matte-blue)] hover:text-[color:var(--color-matte-blue-dark)] transition-colors font-medium"
-          >
-            Ver mais no GitHub
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </a>
-        </div>
+        {/* View All Link removed */}
       </div>
     </section>
   );
