@@ -96,7 +96,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? "bg-[color:var(--color-bg-primary)] backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
@@ -187,7 +187,7 @@ export default function Header() {
                 href="https://blog.geborges.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-center px-4 py-2 bg-[color:var(--color-matte-blue)] text-white rounded-full hover:bg-[color:var(--color-matte-blue-dark)] transition-colors"
+                className="text-[color:var(--color-text-secondary)] hover:text-[color:var(--color-matte-blue)] transition-colors"
               >
                 Blog
               </a>
